@@ -1,0 +1,1 @@
+# primes-scalatra-app-loadtests
