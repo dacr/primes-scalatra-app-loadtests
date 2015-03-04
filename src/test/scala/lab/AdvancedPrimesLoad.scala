@@ -4,6 +4,7 @@ import io.gatling.core.Predef._
 import io.gatling.http.Predef._
 import io.gatling.jdbc.Predef._
 import scala.concurrent.duration._
+import scala.language.postfixOps
 
 class AdvancedPrimesLoad extends Simulation with DummyDefaults {
   //val httpConf = buildDefaultConfig("http://127.0.0.1:8080/primesui")
@@ -12,7 +13,7 @@ class AdvancedPrimesLoad extends Simulation with DummyDefaults {
   def rand(i: Int) : String = java.util.concurrent.ThreadLocalRandom.current.nextInt(i).toString
 
   val scn =
-        scenario("Simple primes load").during(15 minutes) {
+        scenario("Simple primes load").during(5 minutes) {
           exec(
                 http("primesui homage")
                    .get("/")
@@ -33,6 +34,6 @@ class AdvancedPrimesLoad extends Simulation with DummyDefaults {
           .pause(500 milliseconds, 1000 milliseconds)
         }
 
-  setUp(scn.inject(rampUsers(2000) over(90 seconds))).protocols(httpConf)
+  setUp(scn.inject(rampUsers(2000) over(60 seconds))).protocols(httpConf)
 }
 
