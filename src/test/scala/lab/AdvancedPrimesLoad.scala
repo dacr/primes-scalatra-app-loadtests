@@ -6,26 +6,33 @@ import io.gatling.jdbc.Predef._
 import scala.concurrent.duration._
 
 class AdvancedPrimesLoad extends Simulation with DummyDefaults {
-  val httpConf = buildDefaultConfig("http://127.0.0.1:8080/primesui")
+  //val httpConf = buildDefaultConfig("http://127.0.0.1:8080/primesui")
+  val httpConf = buildDefaultConfig("http://127.0.0.1/primesui")
 
   def rand(i: Int) : String = java.util.concurrent.ThreadLocalRandom.current.nextInt(i).toString
 
   val scn =
-        scenario("Simple primes load").during(10 minutes) {
+        scenario("Simple primes load").during(15 minutes) {
           exec(
                 http("primesui homage")
                    .get("/")
                    .headers(defaultHeaders)
                    .check(status.is(200)) )
-          .pause(1000 milliseconds, 3000 milliseconds)
+          .pause(500 milliseconds, 1000 milliseconds)
           .exec(
-                http("check prime")
+                http("check prime first")
                    .get(_ => "/check/"+rand(20000))
                    .headers(defaultHeaders)
                    .check(status.is(200)) )
-          .pause(1000 milliseconds, 3000 milliseconds)
+          .pause(250 milliseconds, 500 milliseconds)
+          .exec(
+                http("check prime second")
+                   .get(_ => "/check/"+rand(20000))
+                   .headers(defaultHeaders)
+                   .check(status.is(200)) )
+          .pause(500 milliseconds, 1000 milliseconds)
         }
 
-  setUp(scn.inject(rampUsers(4500) over(30 seconds))).protocols(httpConf)
+  setUp(scn.inject(rampUsers(2000) over(90 seconds))).protocols(httpConf)
 }
 
