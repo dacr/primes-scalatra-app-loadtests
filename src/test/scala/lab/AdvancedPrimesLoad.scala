@@ -8,7 +8,7 @@ import scala.language.postfixOps
 
 class AdvancedPrimesLoad extends Simulation with DummyDefaults {
   //val httpConf = buildDefaultConfig("http://127.0.0.1:8080/primesui")
-  val httpConf = buildDefaultConfig("http://127.0.0.1/primesui")
+  val httpConf = buildDefaultConfig(primesuiUrl)
 
   def rand(i: Int) : String = java.util.concurrent.ThreadLocalRandom.current.nextInt(i).toString
 
