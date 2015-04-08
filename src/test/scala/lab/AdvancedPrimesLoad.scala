@@ -7,6 +7,16 @@ import scala.concurrent.duration._
 import scala.language.postfixOps
 
 class AdvancedPrimesLoad extends Simulation with DummyDefaults {
+
+  private def propOrEnvOrDefault(key:String, default: => String):String = {
+    import scala.util.Properties._
+    propOrNone(key)
+      .orElse(envOrNone(key))
+      .getOrElse(default)    
+  }
+
+  val vus = propOrEnvOrDefault("PRIMESUI_VUS", "2000").toInt
+
   //val httpConf = buildDefaultConfig("http://127.0.0.1:8080/primesui")
   val httpConf = buildDefaultConfig(primesuiUrl)
 
@@ -34,6 +44,6 @@ class AdvancedPrimesLoad extends Simulation with DummyDefaults {
           .pause(500 milliseconds, 1000 milliseconds)
         }
 
-  setUp(scn.inject(rampUsers(500) over(60 seconds))).protocols(httpConf)
+  setUp(scn.inject(rampUsers(vus) over(60 seconds))).protocols(httpConf)
 }
 
