@@ -6,24 +6,25 @@ import scala.concurrent.duration._
 
 trait DummyDefaults {
 
-  private def toBoolean(in:String):Boolean = {
+  protected def toBoolean(in:String):Boolean = {
     in.toLowerCase().trim match {
       case "true"|"1"|"on"|"yes"|"enabled"|"up" => true
       case _ => false
     }
   }
   
-  private def provOrEnvOrDefault(key:String, default: => String):String = {
+  protected def propOrEnvOrDefault(key:String, default: => String):String = {
     import scala.util.Properties._
     propOrNone(key)
       .orElse(envOrNone(key))
       .getOrElse(default)    
   }
-  
-  val primesuiUrl = provOrEnvOrDefault("PRIMESUI_URL", "http://localhost:8080/primesui")
+
+  private def baseurlCleanup(url:String):String = url.replaceAll("/+$", "")
+
   
   def buildDefaultConfig(baseURL: String) = http
-    .baseURL(baseURL)
+    .baseURL(baseurlCleanup(baseURL))
     .acceptCharsetHeader("ISO-8859-1,utf-8;q=0.7,*;q=0.7")
     .acceptHeader("text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8")
     .acceptEncodingHeader("gzip, deflate")

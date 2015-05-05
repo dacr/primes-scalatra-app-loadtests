@@ -7,18 +7,11 @@ import scala.concurrent.duration._
 import scala.language.postfixOps
 
 class AdvancedPrimesLoad extends Simulation with DummyDefaults {
-
-  private def propOrEnvOrDefault(key:String, default: => String):String = {
-    import scala.util.Properties._
-    propOrNone(key)
-      .orElse(envOrNone(key))
-      .getOrElse(default)    
-  }
-
+  
+  val primesuiURL = propOrEnvOrDefault("PRIMESUI_URL", "http://localhost:8080/primesui")
   val vus = propOrEnvOrDefault("PRIMESUI_VUS", "2000").toInt
 
-  //val httpConf = buildDefaultConfig("http://127.0.0.1:8080/primesui")
-  val httpConf = buildDefaultConfig(primesuiUrl)
+  val httpConf = buildDefaultConfig(primesuiURL)
 
   def rand(i: Int) : String = java.util.concurrent.ThreadLocalRandom.current.nextInt(i).toString
 
