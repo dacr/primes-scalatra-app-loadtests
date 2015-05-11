@@ -10,6 +10,7 @@ class AdvancedPrimesLoad extends Simulation with DummyDefaults {
   
   val primesuiURL = propOrEnvOrDefault("PRIMESUI_URL", "http://localhost:8080/primesui")
   val vus = propOrEnvOrDefault("PRIMESUI_VUS", "2000").toInt
+  val duration = propOrEnvOrDefault("PRIMESUI_LOADTEST_DURATION", "5").toInt
   val customAssertions:List[Assertion] = List(
       propOrEnv("PRIMESUI_ASSERT_MAX_RESPTIME").map(x => global.responseTime.mean.lessThan(x.toInt)),
       propOrEnv("PRIMESUI_ASSERT_MAX_RESPTIME50").map(x => global.responseTime.percentile1.lessThan(x.toInt)),
@@ -26,7 +27,7 @@ class AdvancedPrimesLoad extends Simulation with DummyDefaults {
   def rand(i: Int) : String = java.util.concurrent.ThreadLocalRandom.current.nextInt(i).toString
 
   val scn =
-        scenario("Simple primes load").during(5 minutes) {
+        scenario("Simple primes load").during(duration minutes) {
           exec(
                 http("primesui homage")
                    .get("/")
