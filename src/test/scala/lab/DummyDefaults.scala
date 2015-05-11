@@ -13,11 +13,14 @@ trait DummyDefaults {
     }
   }
   
-  protected def propOrEnvOrDefault(key:String, default: => String):String = {
+  protected def propOrEnv(key:String):Option[String] = {
     import scala.util.Properties._
     propOrNone(key)
-      .orElse(envOrNone(key))
-      .getOrElse(default)    
+      .orElse(envOrNone(key))    
+  }
+  
+  protected def propOrEnvOrDefault(key:String, default: => String):String = {
+      propOrEnv(key).getOrElse(default)    
   }
 
   private def baseurlCleanup(url:String):String = url.replaceAll("/+$", "")
