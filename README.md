@@ -1,5 +1,7 @@
 # primes-scalatra-app-loadtests
 
+very straightforward load test simulation for [primes ui webapp](https://github.com/dacr/primes-scalatra-app).
+
 Available load test parameters (environment variable or java properties )
 
 * general parameters :
