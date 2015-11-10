@@ -1,16 +1,16 @@
 name := "primesui-scalatra-app-loadtest"
 
-version := "v2015-02-03"
+version := "v2015-11-10"
 
-scalaVersion := "2.11.5"
+scalaVersion := "2.11.7"
 
 scalacOptions ++= Seq("-unchecked", "-deprecation" , "-feature")
 
 enablePlugins(GatlingPlugin)
 
 libraryDependencies ++= Seq(
-  "io.gatling.highcharts" % "gatling-charts-highcharts" % "2.1.4" % "test",
-  "io.gatling"            % "gatling-test-framework"    % "2.1.4" % "test",
-  "io.gatling"            % "gatling-bundle"            % "2.1.4" % "test" artifacts (Artifact("gatling-bundle", "zip", "zip", "bundle"))
+  "io.gatling.highcharts" % "gatling-charts-highcharts" % "2.1.7" % "test",
+  "io.gatling"            % "gatling-test-framework"    % "2.1.7" % "test",
+  "io.gatling"            % "gatling-bundle"            % "2.1.7" % "test" artifacts (Artifact("gatling-bundle", "zip", "zip", "bundle"))
 )
 
