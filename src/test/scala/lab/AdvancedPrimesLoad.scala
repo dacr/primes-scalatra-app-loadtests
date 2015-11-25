@@ -26,6 +26,8 @@ class AdvancedPrimesLoad extends Simulation with DummyDefaults {
 
   def rand(i: Int) : String = java.util.concurrent.ThreadLocalRandom.current.nextInt(i).toString
 
+  val checktype="goodlogscheck"
+
   val scn =
         scenario("Simple primes load").during(duration minutes) {
           exec(
@@ -36,13 +38,13 @@ class AdvancedPrimesLoad extends Simulation with DummyDefaults {
           .pause(500 milliseconds, 1000 milliseconds)
           .exec(
                 http("check prime first")
-                   .get(_ => "/check/"+rand(20000))
+                   .get(_ => "/"+checktype+"/"+rand(20000))
                    .headers(defaultHeaders)
                    .check(status.is(200)) )
           .pause(250 milliseconds, 500 milliseconds)
           .exec(
                 http("check prime second")
-                   .get(_ => "/check/"+rand(20000))
+                   .get(_ => "/"+checktype+"/"+rand(20000))
                    .headers(defaultHeaders)
                    .check(status.is(200)) )
           .pause(500 milliseconds, 1000 milliseconds)
