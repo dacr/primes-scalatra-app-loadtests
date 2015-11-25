@@ -26,7 +26,21 @@ class AdvancedPrimesLoad extends Simulation with DummyDefaults {
 
   def rand(i: Int) : String = java.util.concurrent.ThreadLocalRandom.current.nextInt(i).toString
 
-  val checktype="goodlogscheck"
+  /*
+    issuecheck
+    --
+    highcpucheck
+    overcheck
+    slowcheck
+    slowsqlcheck
+    toomanylogscheck
+    badlogscheck
+    goodlogscheck
+    leakedcheck
+    sessionleakedcheck
+    jdbcleakcheck
+  */
+  val checktype=propOrEnvOrDefault("PRIMESUI_CHECKTYPE", "goodlogscheck")
 
   val scn =
         scenario("Simple primes load").during(duration minutes) {
