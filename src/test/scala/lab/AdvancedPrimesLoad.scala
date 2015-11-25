@@ -40,7 +40,7 @@ class AdvancedPrimesLoad extends Simulation with DummyDefaults {
     sessionleakedcheck
     jdbcleakcheck
   */
-  val checktype=propOrEnvOrDefault("PRIMESUI_CHECKTYPE", "goodlogscheck")
+  val checktype=propOrEnvOrDefault("PRIMESUI_CHECKTYPE", "check")
 
   val scn =
         scenario("Simple primes load").during(duration minutes) {
