@@ -45,7 +45,7 @@ class AdvancedPrimesLoad extends Simulation with DummyDefaults {
   val scn =
         scenario("Simple primes load").during(duration minutes) {
           exec(
-                http("primesui homage")
+                http("primesui homepage")
                    .get("/")
                    .headers(defaultHeaders)
                    .check(status.is(200)) )
