@@ -30,6 +30,8 @@ javaOptions in test ++= Seq(
  "-XX:+AggressiveOpts",
  "-XX:+OptimizeStringConcat",
  "-XX:+UseFastAccessorMethods",
+ "-XX:+UseThreadPriorities", 
+ "-XX:ThreadPriorityPolicy=42",
  "-Djava.net.preferIPv4Stack=true",
  "-Djava.net.preferIPv6Addresses=false"
 )
