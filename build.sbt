@@ -26,7 +26,7 @@ javaOptions in Gatling := Seq(
  "-XX:+CMSClassUnloadingEnabled",
  "-XX:+UseCMSInitiatingOccupancyOnly",
  "-XX:CMSInitiatingOccupancyFraction=70",
- "-XX:ParallelGCThreads=5", // Number of CPU / 2 if load test injection is done from the same host
+// "-XX:ParallelGCThreads=5", // Number of CPU / 2 if load test injection is done from the same host
  "-XX:+AggressiveOpts",
  "-XX:+OptimizeStringConcat",
  "-XX:+UseFastAccessorMethods",
