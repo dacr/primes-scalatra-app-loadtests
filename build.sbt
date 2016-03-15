@@ -13,9 +13,10 @@ fork := true
 javaOptions in Gatling := Seq(
    "-Xms2g",
    "-Xmx2g",
-   "-Xmn200m",
-// "-XX:GCTimeRatio=50", 
-// "-XX:SurvivorRatio=4",
+   "-Xmn300m",
+  // "-XX:GCTimeRatio=50", 
+  // "-XX:SurvivorRatio=4",
+ "-XX:+PerfDisableSharedMem",  // Decrease the latency !!!
  "-XX:+UseConcMarkSweepGC",
  "-XX:+UseParNewGC",
  "-XX:+CMSParallelRemarkEnabled",
@@ -24,8 +25,8 @@ javaOptions in Gatling := Seq(
  "-XX:+ExplicitGCInvokesConcurrent",
  "-XX:+CMSClassUnloadingEnabled",
  "-XX:+UseCMSInitiatingOccupancyOnly",
- "-XX:CMSInitiatingOccupancyFraction=60",
- "-XX:ParallelGCThreads=4",
+ "-XX:CMSInitiatingOccupancyFraction=70",
+ "-XX:ParallelGCThreads=5", // Number of CPU / 2 if load test injection is done from the same host
  "-XX:+AggressiveOpts",
  "-XX:+OptimizeStringConcat",
  "-XX:+UseFastAccessorMethods",
@@ -35,6 +36,7 @@ javaOptions in Gatling := Seq(
  "-XX:+PrintGCDetails",
  "-XX:+PrintGCDateStamps",
  "-Xloggc:GC_gatling.log",
+ "-Djava.security.egd=file:///dev/urandom",
  "-Djava.net.preferIPv4Stack=true",
  "-Djava.net.preferIPv6Addresses=false"
 )
