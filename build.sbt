@@ -11,11 +11,67 @@ enablePlugins(GatlingPlugin)
 fork := true
 
 javaOptions in Gatling := Seq(
-   "-Xms2g",
-   "-Xmx2g",
-   "-Xmn300m",
-  // "-XX:GCTimeRatio=50", 
-  // "-XX:SurvivorRatio=4",
+ "-Xms2g",
+ "-Xmx2g",
+ "-Xmn200m",
+ "-XX:+PerfDisableSharedMem",
+ "-XX:-UseAdaptiveSizePolicy",
+ "-XX:GCTimeRatio=2",
+ "-XX:ParallelGCThreads=8",
+ "-XX:+UseParNewGC",
+ "-XX:MaxGCPauseMillis=2000",
+ "-XX:+AggressiveOpts",
+ "-XX:+OptimizeStringConcat",
+ "-XX:+UseFastAccessorMethods",
+ "-XX:+UseThreadPriorities", 
+ "-XX:ThreadPriorityPolicy=42",
+ "-verbose:gc",
+ "-XX:+PrintGCDetails",
+ "-XX:+PrintGCDateStamps",
+ "-Xloggc:GC_gatling.log",
+ "-Djava.security.egd=file:///dev/urandom",
+ "-Djava.net.preferIPv4Stack=true",
+ "-Djava.net.preferIPv6Addresses=false"
+)
+
+/*
+javaOptions in Gatling := Seq(
+ "-Xms2g",
+ "-Xmx2g",
+ "-Xmn300m",
+ "-XX:+PerfDisableSharedMem",
+ "-XX:+ExplicitGCInvokesConcurrent",
+ "-XX:+UseConcMarkSweepGC",
+ "-XX:+CMSIncrementalMode",
+ "-XX:+CMSIncrementalPacing",
+ "-XX:CMSIncrementalDutyCycleMin=10",
+ "-XX:CMSIncrementalDutyCycle=50",
+ "-XX:ParallelGCThreads=4",
+ "-XX:+UseParNewGC",
+ "-XX:MaxGCPauseMillis=500",
+ "-XX:GCTimeRatio=10",
+ "-XX:+AggressiveOpts",
+ "-XX:+OptimizeStringConcat",
+ "-XX:+UseFastAccessorMethods",
+ "-XX:+UseThreadPriorities", 
+ "-XX:ThreadPriorityPolicy=42",
+ "-verbose:gc",
+ "-XX:+PrintGCDetails",
+ "-XX:+PrintGCDateStamps",
+ "-Xloggc:GC_gatling.log",
+ "-Djava.security.egd=file:///dev/urandom",
+ "-Djava.net.preferIPv4Stack=true",
+ "-Djava.net.preferIPv6Addresses=false"
+)
+*/
+
+/*
+javaOptions in Gatling := Seq(
+ "-Xms2g",
+ "-Xmx2g",
+ "-Xmn300m",
+ //"-XX:GCTimeRatio=50", 
+ //"-XX:SurvivorRatio=4",
  "-XX:+PerfDisableSharedMem",  // Decrease the latency !!!
  "-XX:+UseConcMarkSweepGC",
  "-XX:+UseParNewGC",
@@ -40,6 +96,7 @@ javaOptions in Gatling := Seq(
  "-Djava.net.preferIPv4Stack=true",
  "-Djava.net.preferIPv6Addresses=false"
 )
+*/
 
 /*
 javaOptions in Gatling := Seq(
