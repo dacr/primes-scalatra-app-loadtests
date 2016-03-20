@@ -17,7 +17,7 @@ javaOptions in Gatling := Seq(
  "-XX:+PerfDisableSharedMem",
  "-XX:+UseAdaptiveSizePolicy",
  "-XX:GCTimeRatio=95",
- "-XX:ParallelGCThreads=4",
+// "-XX:ParallelGCThreads=4",
  "-XX:+UseParNewGC",
  "-XX:MaxGCPauseMillis=200",
  "-XX:+AggressiveOpts",
@@ -120,8 +120,10 @@ javaOptions in Gatling := Seq(
 */
 
 libraryDependencies ++= Seq(
-  "io.gatling.highcharts" % "gatling-charts-highcharts" % "2.1.7" % "test",
-  "io.gatling"            % "gatling-test-framework"    % "2.1.7" % "test",
-  "io.gatling"            % "gatling-bundle"            % "2.1.7" % "test" artifacts (Artifact("gatling-bundle", "zip", "zip", "bundle"))
+  "io.gatling.highcharts" % "gatling-charts-highcharts" % "2.2.0-SNAPSHOT" % "test",
+  "io.gatling"            % "gatling-test-framework"    % "2.2.0-SNAPSHOT" % "test",
+  "io.gatling"            % "gatling-bundle"            % "2.2.0-SNAPSHOT" % "test" artifacts (Artifact("gatling-bundle", "zip", "zip", "bundle"))
 )
+
+resolvers += "JAnalyse Repository" at "http://www.janalyse.fr/repository/"
 
