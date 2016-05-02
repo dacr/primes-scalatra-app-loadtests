@@ -10,3 +10,4 @@ target/
 .settings
 .DS_store
 /bin/
+nohup.out
