@@ -17,7 +17,7 @@ javaOptions in Gatling := Seq(
  "-XX:+PerfDisableSharedMem",
  "-XX:+UseAdaptiveSizePolicy",
  "-XX:GCTimeRatio=95",
- "-XX:ParallelGCThreads=4",
+// "-XX:ParallelGCThreads=4",
  "-XX:+UseParNewGC",
  "-XX:MaxGCPauseMillis=200",
  "-XX:+AggressiveOpts",
@@ -124,4 +124,6 @@ libraryDependencies ++= Seq(
   "io.gatling"            % "gatling-test-framework"    % "2.2.0" % "test",
   "io.gatling"            % "gatling-bundle"            % "2.2.0" % "test" artifacts (Artifact("gatling-bundle", "zip", "zip", "bundle"))
 )
+
+resolvers += "JAnalyse Repository" at "http://www.janalyse.fr/repository/"
 

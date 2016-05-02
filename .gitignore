@@ -11,3 +11,4 @@ target/
 .DS_store
 /bin/
 nohup.out
+GC_gatling.log
