@@ -12,3 +12,5 @@ target/
 /bin/
 nohup.out
 GC_gatling.log
+analysis.log
+generated
