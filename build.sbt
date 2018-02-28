@@ -1,6 +1,6 @@
 name := "primesui-scalatra-app-loadtest"
 
-version := "v2016-05-02"
+version := "v2016-11-29"
 
 scalaVersion := "2.11.8"
 
@@ -120,10 +120,10 @@ javaOptions in Gatling := Seq(
 */
 
 libraryDependencies ++= Seq(
-  "io.gatling.highcharts" % "gatling-charts-highcharts" % "2.2.0" % "test",
-  "io.gatling"            % "gatling-test-framework"    % "2.2.0" % "test",
-  "io.gatling"            % "gatling-bundle"            % "2.2.0" % "test" artifacts (Artifact("gatling-bundle", "zip", "zip", "bundle"))
+  "io.gatling.highcharts" % "gatling-charts-highcharts" % "2.2.3" % "test",
+  "io.gatling"            % "gatling-test-framework"    % "2.2.3" % "test",
+  "io.gatling"            % "gatling-bundle"            % "2.2.3" % "test" artifacts (Artifact("gatling-bundle", "zip", "zip", "bundle"))
 )
 
-resolvers += "JAnalyse Repository" at "http://www.janalyse.fr/repository/"
+//resolvers += "JAnalyse Repository" at "http://www.janalyse.fr/repository/"
 
